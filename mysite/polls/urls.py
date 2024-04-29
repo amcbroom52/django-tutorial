@@ -1,9 +1,11 @@
 from django.urls import path
 
 from . import views
+from django.urls import include, path
 
 app_name = "polls"
 urlpatterns = [
+    path("__debug__/", include("debug_toolbar.urls")),
     path("", views.IndexView.as_view(), name="index"),
     path("<int:pk>/", views.DetailView.as_view(), name="detail"),
     path("<int:pk>/results/", views.ResultsView.as_view(), name="results"),
